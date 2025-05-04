@@ -6,7 +6,6 @@ $username = "root";
 $password = "";
 $database = "rcmrd";
 
-
 // Create database connection
 $connection = new mysqli($servername, $username, $password, $database);
 

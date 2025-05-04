@@ -12,11 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('closeBtn')?.addEventListener('click', () => {
         contentFrame.src = 'dashboard.html';
     });
-
+    
     document.getElementById('analyst-btn')?.addEventListener('click', () => {
-        contentFrame.src = 'analystlogin.html';
+        contentFrame.src = 'analystdashboard.html';
     });
-
 
     document.getElementById('workplan-btn')?.addEventListener('click', () => {
         contentFrame.src = 'workplan.html';

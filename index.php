@@ -62,12 +62,12 @@ $isAnalyst = isset($_SESSION['role']) && $_SESSION['role'] === 'Analyst';
                             <small>Workplan</small>
                             </a>
                         </li>
-                        <!-- <li>
+                        <li>
                             <a href="#" id="I.matrix-btn">
                             <span class="material-icons-sharp">checklist_rtl</span>
                             <small>I. Matrix</small>
                             </a>
-                        </li> -->
+                        </li>
                         <li>
                             <a href="#" id="Appraisal-btn">
                                 <span class="material-icons-sharp">assessment</span>

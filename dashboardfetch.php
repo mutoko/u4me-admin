@@ -13,7 +13,7 @@ $staffNo = $_SESSION['staffNo'];
 $servername = "localhost";
 $username = "root";  
 $password = "";      
-$dbname = "rcmrd";  
+$dbname = "rcmrd"; 
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,9 +28,9 @@ $sql = "SELECT e.staffNo, e.username, e.name, e.designation1, e.department1, a.s
         FROM employees_data e
         LEFT JOIN appraisal_totals a ON e.staffNo = a.staffNo
         LEFT JOIN performance_totals p ON e.staffNo = p.staffNo
-        WHERE e.staffNo2 = ?";
+         WHERE e.staffNo2 = ? OR e.staffNo4 = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $staffNo);
+$stmt->bind_param("ss", $staffNo, $staffNo);
 $stmt->execute();
 $result = $stmt->get_result();
 

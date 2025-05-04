@@ -17,7 +17,7 @@ tableContainer.addEventListener('mouseup', () => {
   tableContainer.style.cursor = 'grab';
 });
 
-// Prevent mouse leaving while draggin
+// Prevent mouse leaving while dragging
 tableContainer.addEventListener('mouseleave', () => {
   isDragging = false;
   tableContainer.style.cursor = 'grab';

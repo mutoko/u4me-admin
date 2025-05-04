@@ -21,11 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $supervisorAppraisal = isset($_POST['supervisor_appraisal']) ? floatval($_POST['supervisor_appraisal']) : 0;
 
     // Delete existing record for staffNo and insert the new record
-    $stmt = $conn->prepare("DELETE FROM appraisal_totals2 WHERE staffNo = ?");
+    $stmt = $conn->prepare("DELETE FROM appraisal_totals WHERE staffNo = ?");
     $stmt->bind_param("s", $staffNo);
     $stmt->execute();
 
-    $stmt = $conn->prepare("INSERT INTO appraisal_totals2 (staffNo, self_appraisal, supervisor_appraisal) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO appraisal_totals (staffNo, self_appraisal, supervisor_appraisal) VALUES (?, ?, ?)");
     $stmt->bind_param("sdd", $staffNo, $selfAppraisal, $supervisorAppraisal);
 
     if ($stmt->execute()) {
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Fetch existing appraisal data
-    $stmt = $conn->prepare("SELECT self_appraisal, supervisor_appraisal FROM appraisal_totals2 WHERE staffNo = ?");
+    $stmt = $conn->prepare("SELECT self_appraisal, supervisor_appraisal FROM appraisal_totals WHERE staffNo = ?");
     $stmt->bind_param("s", $staffNo);
     $stmt->execute();
     $result = $stmt->get_result();

@@ -30,7 +30,7 @@
 
 
 
-/* DARK THEME VARIABLE */
+/* DARK THEME VARIABLES */
 
  .dark-theme-variables
 {
@@ -1121,10 +1121,9 @@ body {
 .records::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-          
-          
-
-/* TABLE DOP DOWN BUTTON  */
+   
+   
+   /* TABLE DOP DOWN BUTTON  */
 .data-type-dropdown {
     display: flex;
     align-items: center;
@@ -1153,6 +1152,6 @@ body {
     outline: none;
     border-color: #0056b3;
     box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
-}
-
+}       
+          
 

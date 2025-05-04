@@ -17,7 +17,7 @@ if (!isset($_SESSION['staffNo'])) {
     die("Unauthorized access. Please log in.");
 }
 
-$staffNo = $_SESSION['staffNo']; // Retrieve staffNo from the sessions
+$staffNo = $_SESSION['staffNo']; // Retrieve staffNo from the session
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Fetch data only for the logged-in user's staffNo
@@ -45,7 +45,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $submittedData = $data['submittedData'];
 
         if (!empty($submittedData)) {
-            // DELETE existing records for this staffNo before inserting new one
+            // DELETE existing records for this staffNo before inserting new ones
             $deleteSQL = "DELETE FROM workplan WHERE staffNo = ?";
             $deleteStmt = $connection->prepare($deleteSQL);
             $deleteStmt->bind_param("s", $staffNo);
@@ -63,7 +63,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 die("Error preparing insert statement: " . $connection->error);
             }
 
-            // Loop through the submitted data and insert to the database
+            // Loop through the submitted data and insert into the database
             foreach ($submittedData as $rowData) {
                 $Perspectives = $rowData['Perspectives'];
                 $StrategicObjective = $rowData['StrategicObjective'];
@@ -110,4 +110,3 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $connection->close();
 ?>
-

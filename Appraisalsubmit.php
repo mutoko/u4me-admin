@@ -1,6 +1,7 @@
 <?php
 session_start(); 
 
+
 if (!isset($_SESSION['staffNo'])) {
     die(json_encode(["status" => "error", "message" => "Staff not logged in"]));
 }
@@ -9,6 +10,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "rcmrd";
+
 
 $conn = new mysqli($servername, $username, $password, $database);
 
@@ -29,25 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die(json_encode(["status" => "error", "message" => "Invalid request data"]));
     }
 
-    // Prepare the SQL statement to delete existing records for this staffNo from both tables
-    $deleteStmt1 = $conn->prepare("DELETE FROM appraisal_perfomance WHERE staffNo = ?");
-    if (!$deleteStmt1) {
-        die(json_encode(["status" => "error", "message" => "SQL preparation failed for delete from appraisal_perfomance"]));
+    // Prepare the SQL statement to delete existing records for this staffNo
+    $deleteStmt = $conn->prepare("DELETE FROM appraisal_perfomance WHERE staffNo = ?");
+    if (!$deleteStmt) {
+        die(json_encode(["status" => "error", "message" => "SQL preparation failed for delete"]));
     }
-    $deleteStmt1->bind_param("s", $staffNo);
-    $deleteStmt1->execute();
-    $deleteStmt1->close();
+    $deleteStmt->bind_param("s", $staffNo);
+    $deleteStmt->execute();
+    $deleteStmt->close();
 
-    $deleteStmt2 = $conn->prepare("DELETE FROM appraisal_perfomance2 WHERE staffNo = ?");
-    if (!$deleteStmt2) {
-        die(json_encode(["status" => "error", "message" => "SQL preparation failed for delete from appraisal_perfomance2"]));
-    }
-    $deleteStmt2->bind_param("s", $staffNo);
-    $deleteStmt2->execute();
-    $deleteStmt2->close();
-
-    // Prepare SQL statement for inserting new records into both tables
-    $insertStmt1 = $conn->prepare("INSERT INTO appraisal_perfomance (
+    // Prepare SQL statement for inserting new records
+    $insertStmt = $conn->prepare("INSERT INTO appraisal_perfomance (
         staffNo, Perspectives, SSMARTAObjectives, Initiatives, UoM, DI,
         WeightSSMARTAObjective, TargetSSMARTAObjective, Annual_Actual_Achievement, Annual_Score,
         Annual_Weighted_Average, Annual_Detailed_Explanation, Annual_Evidence, 
@@ -56,24 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Supervisor_Comments, Supervisor_IdentifiedGaps, Supervisor_Strategies
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    if (!$insertStmt1) {
-        die(json_encode(["status" => "error", "message" => "SQL preparation failed for insert into appraisal_perfomance"]));
+    if (!$insertStmt) {
+        die(json_encode(["status" => "error", "message" => "SQL preparation failed for insert"]));
     }
 
-    $insertStmt2 = $conn->prepare("INSERT INTO appraisal_perfomance2 (
-        staffNo, Perspectives, SSMARTAObjectives, Initiatives, UoM, DI,
-        WeightSSMARTAObjective, TargetSSMARTAObjective, Annual_Actual_Achievement, Annual_Score,
-        Annual_Weighted_Average, Annual_Detailed_Explanation, Annual_Evidence, 
-        Supervisor_WeightSSMARTAObjective, Supervisor_TargetSSMARTAObjective,
-        Supervisor_ActualAchievement, Supervisor_Score, Supervisor_Weighted_Average,
-        Supervisor_Comments, Supervisor_IdentifiedGaps, Supervisor_Strategies
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    if (!$insertStmt2) {
-        die(json_encode(["status" => "error", "message" => "SQL preparation failed for insert into appraisal_perfomance2"]));
-    }
-
-    // Loop through the submitted data and insert into both tables
+    // Loop through the submitted data and insert into the database
     foreach ($data['submittedData'] as $rowData) {
         $Perspectives = $rowData['Perspectives'];
         $SSMARTAObjectives = $rowData['SSMARTAObjectives'];
@@ -102,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $Supervisor_Score = $Supervisor_Score . "%";
         $Supervisor_Weighted_Average = $Supervisor_Weighted_Average . "%";
 
-        // Bind parameters for insertion into the first table
-        $insertStmt1->bind_param("isssssdddddssdddddsss", 
+        // Bind parameters for insertion
+        $insertStmt->bind_param("isssssdddddssdddddsss", 
             $staffNo, $Perspectives, $SSMARTAObjectives, $Initiatives, $UoM, $DI, $WeightSSMARTAObjective,
             $TargetSSMARTAObjective, $Annual_Actual_Achievement, $Annual_Score, $Annual_Weighted_Average,
             $Annual_Detailed_Explanation, $Annual_Evidence, $Supervisor_WeightSSMARTAObjective,
@@ -111,28 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $Supervisor_Weighted_Average, $Supervisor_Comments, $Supervisor_IdentifiedGaps, $Supervisor_Strategies
         );
 
-        // Bind parameters for insertion into the second table
-        $insertStmt2->bind_param("isssssdddddssdddddsss", 
-            $staffNo, $Perspectives, $SSMARTAObjectives, $Initiatives, $UoM, $DI, $WeightSSMARTAObjective,
-            $TargetSSMARTAObjective, $Annual_Actual_Achievement, $Annual_Score, $Annual_Weighted_Average,
-            $Annual_Detailed_Explanation, $Annual_Evidence, $Supervisor_WeightSSMARTAObjective,
-            $Supervisor_TargetSSMARTAObjective, $Supervisor_ActualAchievement, $Supervisor_Score,
-            $Supervisor_Weighted_Average, $Supervisor_Comments, $Supervisor_IdentifiedGaps, $Supervisor_Strategies
-        );
-
-        // Execute insert queries for both tables
-        if (!$insertStmt1->execute()) {
-            echo "Error inserting data for $Perspectives $SSMARTAObjectives into appraisal_perfomance: " . $insertStmt1->error . "<br>";
-        }
-        
-        if (!$insertStmt2->execute()) {
-            echo "Error inserting data for $Perspectives $SSMARTAObjectives into appraisal_perfomance2: " . $insertStmt2->error . "<br>";
+        if (!$insertStmt->execute()) {
+            echo "Error inserting data for $Perspectives $SSMARTAObjectives: " . $insertStmt->error . "<br>";
         }
     }
 
-    // Close insert statements
-    $insertStmt1->close();
-    $insertStmt2->close();
+    // Close insert statement
+    $insertStmt->close();
 
     // Return success message
     echo json_encode(["status" => "success", "message" => "Records inserted successfully"]);

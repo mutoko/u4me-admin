@@ -36,7 +36,7 @@ function fetchAndUpdateData() {
                     }
                 }
 
-                row.innerHTML = ` 
+                row.innerHTML = `
                     <td>${employee.staffNo}</td>
                     <td>${employee.username}</td>
                     <td>${employee.name}</td>
@@ -63,10 +63,14 @@ function fetchAndUpdateData() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
-// Function to fetch the data from the backend API
+
+// Store the fetched records globally
+let allRecords = [];
+
+// Function to fetch the data from the backend API (replace with actual API endpoint)
 async function fetchData() {
     try {
-        const response = await fetch('analystdashboardfetch.php');
+        const response = await fetch('/api/records'); // Replace with your actual API endpoint
         const data = await response.json();
         allRecords = data; // Store the fetched data globally
         populateTable(allRecords); // Initialize table with all data first
@@ -150,7 +154,7 @@ window.onload = function() {
     initializePage(); // Apply department filter based on selected value
 };
 
-// Appraise Employee and Fetch Workplan functions
+
 function appraiseEmployee(staffNo) {
     window.location.href = `adminAppraisal.html?staffNo=${staffNo}`;
 }

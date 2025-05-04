@@ -31,7 +31,7 @@ try {
         // Process updates
         foreach ($input['submittedData'] as $row) {
             $stmt = $conn->prepare("
-                UPDATE appraisal_perfomance2 SET
+                UPDATE appraisal_perfomance SET
                     Perspectives = ?,
                     SSMARTAObjectives = ?,
                     Initiatives = ?,
@@ -103,7 +103,7 @@ try {
                 Supervisor_ActualAchievement, Supervisor_Score,
                 Supervisor_Weighted_Average, Supervisor_Comments,
                 Supervisor_IdentifiedGaps, Supervisor_Strategies
-            FROM appraisal_perfomance2
+            FROM appraisal_perfomance
             WHERE staffNo = ?
         ");
         

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            errorMessage.textContent = "Failed to load appraisal data: " + error.message;
+            errorMessage.textContent = "Failed to load appraisal data.";
         });
     }
 

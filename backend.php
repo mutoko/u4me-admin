@@ -7,7 +7,7 @@ if ($connection->connect_error) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') 
 {
-    // Fetch data from the databas
+    // Fetch data from the database
     $sql = "SELECT * FROM workplan";
     $result = $connection->query($sql);
 

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchTotals(); // Load totals from the database on page load
 
     document.getElementById("submitButton").addEventListener("click", function () {
-        submitData(); // Save data to the database when submit
+        submitData(); // Save data to the database when submitting
     });
 
     document.querySelector("#tableBody").addEventListener("input", function (event) {

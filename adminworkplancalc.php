@@ -22,7 +22,7 @@ if ($action === 'fetch') {
 }
 
 function fetchTotals($conn, $staffNo) {
-    $query = "SELECT orgCapacity, businessProcess, customer, financial, overallTotal FROM performance_totals2 WHERE staffNo = ?";
+    $query = "SELECT orgCapacity, businessProcess, customer, financial, overallTotal FROM performance_totals WHERE staffNo = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $staffNo);
     $stmt->execute();
@@ -48,13 +48,13 @@ function saveTotals($conn, $staffNo) {
     $overallTotal = $data['overallTotal'];
 
     // Delete existing data for this staffNo
-    $deleteQuery = "DELETE FROM performance_totals2 WHERE staffNo = ?";
+    $deleteQuery = "DELETE FROM performance_totals WHERE staffNo = ?";
     $deleteStmt = $conn->prepare($deleteQuery);
     $deleteStmt->bind_param("i", $staffNo);
     $deleteStmt->execute();
 
     // Insert new data for this staffNo
-    $insertQuery = "INSERT INTO performance_totals2 (staffNo, orgCapacity, businessProcess, customer, financial, overallTotal) 
+    $insertQuery = "INSERT INTO performance_totals (staffNo, orgCapacity, businessProcess, customer, financial, overallTotal) 
                     VALUES (?, ?, ?, ?, ?, ?)";
     $insertStmt = $conn->prepare($insertQuery);
     $insertStmt->bind_param(

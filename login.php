@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            $_SESSION['username'] = $user['username'];
            $_SESSION['staffNo'] = $user['staffNo']; // Store staffNo in session
            $_SESSION['staffNo2'] = $user['staffNo2']; // Store staffNo2 in session
-           $_SESSION['role'] = $user['role']; // Store role in session
+           $_SESSION['role'] = $user['role']; // Store staffNo2 in session
 
 
             // Redirect to profile page

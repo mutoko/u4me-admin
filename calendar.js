@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         calendarDates.innerHTML = '';
 
-        // Fill in blank days before the first of the months
+        // Fill in blank days before the first of the month
         for (let i = 0; i < firstDay; i++) {
             let emptyDiv = document.createElement('div');
             emptyDiv.classList.add('empty');

@@ -12,7 +12,7 @@ if ($connection->connect_error) {
     die("Database connection failed: " . $connection->connect_error);
 }
 
-// Check if a staffNo is provided via GET request; use session
+// Check if a staffNo is provided via GET request; otherwise, use session
 $staffNo = isset($_GET['staffNo']) ? $_GET['staffNo'] : (isset($_SESSION['staffNo']) ? $_SESSION['staffNo'] : null);
 
 if (!$staffNo) {
@@ -21,7 +21,7 @@ if (!$staffNo) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Fetch data for the specified staffNo
-    $sql = "SELECT * FROM workplan2 WHERE staffNo = ?";
+    $sql = "SELECT * FROM workplan WHERE staffNo = ?";
     $stmt = $connection->prepare($sql);
     $stmt->bind_param("s", $staffNo);
     $stmt->execute();
@@ -46,14 +46,14 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!empty($submittedData)) {
             // DELETE existing records for this staffNo before inserting new ones
-            $deleteSQL = "DELETE FROM workplan2 WHERE staffNo = ?";
+            $deleteSQL = "DELETE FROM workplan WHERE staffNo = ?";
             $deleteStmt = $connection->prepare($deleteSQL);
             $deleteStmt->bind_param("s", $staffNo);
             $deleteStmt->execute();
             $deleteStmt->close();
 
             // Prepare the SQL statement for inserting new data
-            $stmt = $connection->prepare("INSERT INTO workplan2 
+            $stmt = $connection->prepare("INSERT INTO workplan 
                 (staffNo, Perspectives, StrategicObjective, SSMARTAObjectives, WeightSSMARTAObjective,
                 TargetSSMARTAObjective, Initiatives, SpecificActivities, ExpectedOutput, January, February, March, 
                 April, May, June, July, August, September, October, November, December) 

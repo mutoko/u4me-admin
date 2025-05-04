@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateDecisionMessage(score) {
         let message = "";
         // decision making
-        if (score >= 100) message = "🌟 Outstanding! You've exceeded expectations!";
-        else if (score >= 85) message = "👏 Very Good! Keep up the momentum!";
-        else if (score >= 70) message = "👍 Good! Stay focused and improve further!";
-        else if (score >= 55) message = "⚠️ Fair! Consider areas for improvement.";
-        else message = "🚨 Needs Improvement! Work on key areas to enhance performance.";
+        if (score >= 100) message = "🌟 Outstanding!";
+        else if (score >= 85) message = "👏 Very Good!";
+        else if (score >= 70) message = "👍 Good!";
+        else if (score >= 55) message = "⚠️ Fair!";
+        else message = "🚨 Needs Improvement!.";
 
         document.getElementById('decisionMessage').innerText = message;
     }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const remaining = 100 - score;
 
-        // Determine color based on score range (0-100)
+        // Determine color based on score range
         let scoreColor;
         if (score >= 100) scoreColor = '#548dd4';  // Blue
         else if (score >= 85) scoreColor = '#41f1b6';  // Green
