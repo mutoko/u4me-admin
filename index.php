@@ -20,8 +20,8 @@ $isAnalyst = isset($_SESSION['role']) && $_SESSION['role'] === 'Analyst';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <title>Bsc Dashboard</title>
-    <link rel="icon" href="img/rcmrd.png" type="image/x-icon">
+    <title>U4me Dashboard</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
 
     
@@ -35,8 +35,8 @@ $isAnalyst = isset($_SESSION['role']) && $_SESSION['role'] === 'Analyst';
         <input type="checkbox" id="menu-toggle">
         <div class="sidebar">
             <div class="side-header">
-                <img src="./img/logo.png" alt="">
-                <h3>RCMRD</h3>
+                <img src="./img/favicon.png" alt="">
+                <h3>U4ME</h3>
             </div>
             
             <div class="side-content">
@@ -53,33 +53,33 @@ $isAnalyst = isset($_SESSION['role']) && $_SESSION['role'] === 'Analyst';
                         <li>
                             <a href="#" id="profile-btn">
                             <span class="material-icons-sharp">person</span>
-                            <small>Profile</small>
+                            <small>job Postings</small>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="workplan-btn">
                             <span class="material-icons-sharp">event</span>
-                            <small>Workplan</small>
+                            <small>Applicants</small>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="I.matrix-btn">
                             <span class="material-icons-sharp">checklist_rtl</span>
-                            <small>I. Matrix</small>
+                            <small>Employees</small>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="Appraisal-btn">
                                 <span class="material-icons-sharp">assessment</span>
-                                <small>Appraisal</small>
+                                <small>Employers</small>
                             </a>
                         </li>
-                        <!-- <li>
+                         <li>
                             <a href="#" id="pip-btn">
                                 <span class="material-icons-sharp">trending_up</span>
-                                <small>PIP</small>
+                                <small>Employees</small>
                             </a>
-                        </li> -->
+                        </li> 
                         <li>
                             <a href="#" id="Admin-btn">
                                 <span class="material-icons-sharp">admin_panel_settings</span>
