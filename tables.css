@@ -1,0 +1,102 @@
+:root 
+{
+    --main-color: #22BAA0;
+    --color-dark: #34425A;
+    --text-grey: #B0B0B0;
+
+    --color-primary: #548dd4;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #3f71e8;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light)
+}
+
+/* WORKPLAN TABLE  */
+.records 
+{
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+html,body
+{
+    font-family: 'Poppins';font-size: 16px;
+
+}
+
+.records table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin-bottom: 20px;
+    table-layout: auto;
+    border-radius: 20px;
+}
+
+.records th, .records td {
+    border: 1px solid #dee2e6;
+    padding: 18px;
+    vertical-align: top;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.records th 
+{
+    background-color:var(--color-primary);
+    font-weight: bold;
+    align-content: center;
+    color: var(--color-white);
+    text-align: center;
+    font-size: 17px;
+    top: 0;
+ 
+}
+
+.records td 
+{
+    background-color: #ffffff;
+}
+
+.records tr:nth-child(even) td 
+{
+    background-color: #f9f9f9;
+}
+
+
+.table-responsive 
+{
+    overflow-x: auto;
+}
+
+.wide-column 
+{
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+[   contenteditable="true"]:focus 
+{
+    outline: 2px solid #007bff;
+    background-color: #e9ecef;
+}
+

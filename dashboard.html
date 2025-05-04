@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"rel="stylesheet">
+<link rel="stylesheet" href="./index.css">
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<body>
+    <main>
+        
+        <div class="page-content">
+        
+            <div class="analytics">
+
+                <!-- Pie Chart for Supervisor Appraisal (Now First) -->
+                <!-- Pie Chart for Supervisor Appraisal -->
+                <div class="card">
+                 <div class="card-head">
+               <h3>My Score</h3>
+                 </div>
+
+                 <!-- Decision Making Messages -->
+                 <p id="decisionMessage" style="font-size: 16px; font-weight: bold; color: #333; text-align: center; margin-top: 5px;"></p>
+
+                  <div style="position: relative; width: 100%; height: 300px; max-height: 400px;">
+                   <canvas id="supervisorAppraisalChart"></canvas>
+                </div>
+                </div>
+
+                <!-- Full Functional Calendar (Now Second) -->
+                <div class="card">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button id="prevMonth">◀</button>
+                            <h3 id="monthYear"></h3>
+                            <button id="nextMonth">▶</button>
+                        </div>
+                        <div class="calendar-days">
+                            <div class="day">Sun</div>
+                            <div class="day">Mon</div>
+                            <div class="day">Tue</div>
+                            <div class="day">Wed</div>
+                            <div class="day">Thu</div>
+                            <div class="day">Fri</div>
+                            <div class="day">Sat</div>
+                        </div>
+                        <div id="calendarDates" class="calendar-dates"></div>
+                    </div>
+                </div>
+
+                <!-- Chart Card for Reportees (Now Third) -->
+                <div class="card">
+                    <div class="card-head">
+                        <h3>My Reportees Appraisal Scores:</h3>
+                    </div>
+                    <canvas id="appraisalChart"></canvas>
+                </div>
+
+                  <!-- Chart Card for Reportees (Now Third) -->
+                
+            </div>
+
+            <!-- RECORDS -->
+            <div class="records table-responsive">
+                <div>
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <th> STAFF NO:</th>
+                                <th> USERNAME:</th>
+                                <th> NAME:</th>
+                                <th> DESIGNATION:</th>
+                                <th> DEPARTMENT:</th>
+                                <th> SCORE:</th>
+                                <th> WORKPLAN:</th>
+                                <th> APPRAISAL:</th>
+                                <th> ACTIONS:</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- ORGANIZATION CAPACITY DATA DISPLAY DYNAMICALLY -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+        </div>
+        
+    </main>
+    <!-- END OF MAIN -->
+    <script src="./dashboardfetch.js"></script>
+    <script src="./calendar.js"></script>
+    <script src="./myscore.js"></script>
+    <script src="./drag.js"></script>
+</body>
+</html>
