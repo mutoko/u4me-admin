@@ -52,41 +52,36 @@ $isAnalyst = isset($_SESSION['role']) && $_SESSION['role'] === 'Analyst';
                         </li>
                         <li>
                             <a href="#" id="profile-btn">
-                            <span class="material-icons-sharp">person</span>
+                            <span class="material-icons-sharp">work</span>
                             <small>job Postings</small>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="workplan-btn">
-                            <span class="material-icons-sharp">event</span>
+                            <span class="material-icons-sharp">groups</span>
                             <small>Applicants</small>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="I.matrix-btn">
-                            <span class="material-icons-sharp">checklist_rtl</span>
+                            <span class="material-icons-sharp">apartment</span>
                             <small>Employees</small>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="Appraisal-btn">
-                                <span class="material-icons-sharp">assessment</span>
+                                <span class="material-icons-sharp">person</span>
                                 <small>Employers</small>
                             </a>
                         </li>
-                         <li>
-                            <a href="#" id="pip-btn">
-                                <span class="material-icons-sharp">trending_up</span>
-                                <small>Employees</small>
-                            </a>
-                        </li> 
+                          
                         <li>
                             <a href="#" id="Admin-btn">
                                 <span class="material-icons-sharp">admin_panel_settings</span>
                                 <small>Admin</small>
                             </a>
                         </li>
-                        <li id="analyst-btn" <?php echo !$isAnalyst ? 'style="display:none;"' : ''; ?>>
+                        <li id="analyst-btn" >
                              <a href="#">
                              <span class="material-icons-sharp">analytics</span>
                             <small>Analyst</small>
